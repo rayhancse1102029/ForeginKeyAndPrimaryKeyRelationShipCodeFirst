@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CrudProject.Data;
+using CrudProject.Service;
+using CrudProject.Service.Interface;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -43,6 +45,9 @@ namespace CrudProject
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IGenderService, GenderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,6 +76,13 @@ namespace CrudProject
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "areas",
+                    template: "{area=exist}/{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
