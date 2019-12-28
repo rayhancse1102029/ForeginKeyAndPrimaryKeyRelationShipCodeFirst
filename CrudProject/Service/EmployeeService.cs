@@ -35,7 +35,7 @@ namespace CrudProject.Service
 
         public async Task<IEnumerable<Employee>> GetAllEmployee()
         {
-            var model = _context.Employees.Include(x=>x.Gender).AsNoTracking().ToList();
+            List<Employee> model = _context.Employees.Include(x => x.Gender).AsNoTracking().ToList();
             return model;
         }
 
