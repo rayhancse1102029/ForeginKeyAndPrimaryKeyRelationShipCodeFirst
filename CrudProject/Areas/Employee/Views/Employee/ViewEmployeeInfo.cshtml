@@ -1,0 +1,40 @@
+﻿
+@model CrudProject.Areas.Employee.Models.Employee
+
+@{
+    ViewData["Title"] = "ViewEmployeeInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section>
+    <div class="card">
+        <div class="card-header">
+            <h4 style="font-weight: bold">Employee Information</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <tr>
+                    <td>ID</td>
+                    <td>@Model.id</td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td>@Model.name</td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>@Model.Gender.name</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>@Model.email</td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td>@Model.phone</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+

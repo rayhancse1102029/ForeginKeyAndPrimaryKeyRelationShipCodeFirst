@@ -45,6 +45,7 @@ namespace CrudProject.Areas.Employee.Controllers
 
             Models.Employee employee = new Models.Employee()
             {
+                id = employeeViewModel.id,
                 name = employeeViewModel.name,
                 genderId = employeeViewModel.genderId,
                 email = employeeViewModel.email,
@@ -56,6 +57,24 @@ namespace CrudProject.Areas.Employee.Controllers
             msg = "success";
 
             return Json(msg);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ViewEmployeeInfo(int id)
+        {
+     
+            Models.Employee  employee = await employeeService.GetEmployeeById(id);
+
+            return Json(employee);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteEmployee(int id)
+        {
+
+           bool result = await employeeService.DeleteEmployeeById(id);
+
+            return Json(result);
         }
     }
 }
